@@ -4,7 +4,7 @@ const appController = require('../controller/appController')
 
 // Application Routes
 router.get('/', appController.home)
-// router.get('/dependencies', appController.dependencies)
+router.get('/dependencies', appController.dependencies)
 // router.get('/minimumSecure', appController.minimumSecurePage)
 // router.get('/latestReleases', appController.latestReleasesPage)
 
