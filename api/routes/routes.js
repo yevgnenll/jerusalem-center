@@ -10,6 +10,7 @@ router.get('/dependencies', appController.dependencies)
 
 // API Routes
 // router.get('/api/minimum-secure', appController.minimumSecure)
-// router.get('/api/latest-releases', appController.latestReleases)
+router.get('/api/latest-releases', appController.latestReleases)
+router.get('/api/dependencies', appController.dependencies)
 
 module.exports = router

@@ -23,3 +23,23 @@ exports.dependencies = (req, res) => {
         res.json({ error, message: `Unable to fetch data on ${req.route.path}` })
     }
 }
+
+const getLatestReleases = (releases) =>
+    releases.reduce((acc, release) => {
+        const major = `v${semverMajor(release.version)}`
+        const existing = acc[major]
+        if (!existing || isGrater(release, existing)) {
+            acc[major] = release
+        }
+        return acc
+    }, {})
+
+exports.latestReleases = async (req, res) => {
+    try {
+        res.setHeader('Content-type', 'application/json')
+        const releases = await getJSON(NODE_API_URL)
+        res.json(getLatestReleases(releases))
+    } catch (error) {
+        res.json({ error, message: `Unable to fetch data on ${req.route.path}` })
+    }
+}
