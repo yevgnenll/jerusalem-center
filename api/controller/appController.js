@@ -5,6 +5,9 @@ const semverGt = require('semver/functions/gt')
 const packageJson = require('../../package.json')
 const NODE_API_URL = 'https://nodejs.org/dist/index.json'
 
+const express = require('express')
+const app = express()
+
 const isGrater = (a, b) => semverGt(a.version, b.version)
 
 exports.home = (req, res) => {
@@ -15,6 +18,7 @@ exports.dependencies = (req, res) => {
     const dependencies = Object.entries(
         packageJson.dependencies
     ).map(([key, value]) => ({ name: key, version: value }))
+
 
     try {
         res.setHeader('Content-type', 'application/json')
